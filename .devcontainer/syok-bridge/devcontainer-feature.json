@@ -1,0 +1,1 @@
+{"id": "syok-bridge", "version": "1.0.0", "name": "Syok bridge", "description": "Keeps the Syok Code bridge running", "entrypoint": "/usr/local/share/syok-bridge-entry.sh"}
