@@ -12,3 +12,5 @@ if ! pgrep -f "syok.js bridge" >/dev/null 2>&1; then
   setsid nohup syok bridge >> "$HOME/.syok/bridge.log" 2>&1 < /dev/null &
   disown
 fi
+# GitHub makes port 8787 private again on every wake-up. The background service has no Codespace login, so make it public here (retry while the port appears).
+for i in $(seq 1 30); do gh codespace ports visibility 8787:public -c "$CODESPACE_NAME" >/dev/null 2>&1 && break; sleep 3; done
