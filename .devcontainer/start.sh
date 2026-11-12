@@ -8,6 +8,7 @@ if curl -fsSL https://syok-ai.com/syok-code/syok.js -o "$HOME/.syok/syok.js.new"
 cd "${CODESPACE_VSCODE_FOLDER:-$PWD}"
 # Start the bridge once (it makes port 8787 reachable for Syok and waits for commands).
 if ! pgrep -f "syok.js bridge" >/dev/null 2>&1; then
-  setsid nohup syok bridge > "$HOME/.syok/bridge.log" 2>&1 < /dev/null &
+  echo "$(date -u +%FT%TZ) start.sh launching bridge" >> "$HOME/.syok/start.log"
+  setsid nohup syok bridge >> "$HOME/.syok/bridge.log" 2>&1 < /dev/null &
   disown
 fi
