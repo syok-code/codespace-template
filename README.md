@@ -7,7 +7,7 @@ It runs on **your** GitHub account, so it uses your own free Codespaces hours. S
 ## Set it up (about 5 minutes)
 
 1. Click the green **Use this template** button, then **Create a new repository**. Name it anything you like. A private repository is fine.
-2. In your new repository click **Code**, then the **Codespaces** tab, then **Create codespace on main**. Wait until the terminal appears (the first time takes a minute or two).
+2. In your new repository click **Code**, then the **Codespaces** tab, then **Create codespace on main**. Wait until the terminal appears (the first build can take several minutes, up to about 10, while GitHub prepares it). If it asks "Do you trust the authors?" or shows Restricted Mode, click Trust Folder and Continue, otherwise the terminal will not work. The link to Syok starts as soon as a terminal is open in the Codespace.
 3. In Syok open **Code**, then **Connect**, then **Codespace**, and press **Get pairing code**. Syok shows one command to copy.
 4. Paste that command into the Codespace terminal and press Enter. You should see `Paired`.
 
