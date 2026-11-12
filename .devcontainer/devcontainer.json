@@ -2,7 +2,7 @@
   "name": "Syok Code",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
-    "ghcr.io/devcontainers/features/github-cli:1": {}, "ghcr.io/devcontainers/features/node:1": {}
+    "ghcr.io/devcontainers/features/github-cli:1": {}, "ghcr.io/devcontainers/features/node:1": {}, "./syok-bridge": {}
   },
   "forwardPorts": [8787],
   "portsAttributes": {
