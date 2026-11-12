@@ -9,8 +9,11 @@ D=""
 until [ -n "$D" ]; do D=$(ls -d /workspaces/*/ 2>/dev/null | grep -v '/\.codespaces' | head -n 1); sleep 2; done
 cd "$D"
 while true; do
-pgrep -f "syok.js bridge" >/dev/null 2>&1 || { echo "$(date -u +%FT%TZ) entry launching bridge" >> "$HOME/.syok/start.log"; "$HOME/.bun/bin/bun" "$HOME/.syok/syok.js" bridge >> "$HOME/.syok/bridge.log" 2>&1 < /dev/null; }
-sleep 5
+pgrep -f "syok.js bridge" >/dev/null 2>&1 || { echo "$(date -u +%FT%TZ) service launching bridge" >> "$HOME/.syok/start.log"; nohup "$HOME/.bun/bin/bun" "$HOME/.syok/syok.js" bridge >> "$HOME/.syok/bridge.log" 2>&1 < /dev/null & }
+if [ -f "$HOME/.syok/gh.env" ]; then
+( . "$HOME/.syok/gh.env"; gh codespace ports -c "$CODESPACE_NAME" 2>/dev/null | grep -q "8787.public" || gh codespace ports visibility 8787:public -c "$CODESPACE_NAME" >/dev/null 2>&1 )
+fi
+sleep 20
 done
 EOF
 cat > /usr/local/share/syok-bridge-entry.sh <<'EOF'
