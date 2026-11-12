@@ -14,3 +14,5 @@ if ! pgrep -f "syok.js bridge" >/dev/null 2>&1; then
 fi
 # GitHub makes port 8787 private again on every wake-up. The background service has no Codespace login, so make it public here (retry while the port appears).
 for i in $(seq 1 30); do gh codespace ports visibility 8787:public -c "$CODESPACE_NAME" >/dev/null 2>&1 && break; sleep 3; done
+# Save the Codespace login for the background service (it keeps port 8787 public and the bridge running, even when no editor is open). Only you can read this file.
+( umask 077; printf 'export GITHUB_TOKEN=%s\nexport CODESPACE_NAME=%s\n' "$GITHUB_TOKEN" "$CODESPACE_NAME" > "$HOME/.syok/gh.env" )
